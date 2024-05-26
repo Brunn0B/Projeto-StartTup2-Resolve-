@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Near Community - Postar Comentário</title>
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+            font-family: Arial, sans-serif;
+            padding: 0;
+        }
+        header {
+            background-color: #28a745;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .center {
+    text-align: center;
+    color:#ffffff;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+}
+
+.menu a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0;
+    transition: color 0.3s;
+    }
+
+.line {
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+}
+        .container {
+            max-width: 600px;
+            margin: 100px auto 200px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #28a745;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+            border: 1px solid #28a745;
+        }
+        input[type="file"] {
+            margin-top: 10px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        footer {
+    background-color: #28a745;
+    color: #ffffff; 
+    padding: 80px;
+    text-align: center; 
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="center">
+            <h1>NearCommunity</h1>
+        </div>
+        <nav class="menu">
+            <a href="cadastroCivil.html" target="_blank">Cadastro civil</a>
+            <a href="cadastroInsti.html" target="_blank">Cadastro Instituição</a>
+            <a href="feed.html" target="_blank">Feed</a>
+            <a href="login.html">Perfil</a>
+        </nav>
+        <div class="line"></div>
+    </header>
+
+<div class="container">
+    <h2>Postar Comentário</h2>
+    <form action="#" method="post" enctype="multipart/form-data">
+        <label for="comment">Comentário:</label>
+        <textarea id="comment" name="comment" rows="4" required></textarea>
+        <input type="file" id="attachment" name="attachment">
+        <button type="submit">Postar</button>
+    </form>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2024 NearCommunity. Todos os direitos reservados.</p>
+        <nav class="footer-menu">
+            <a href="#">Termos de Serviço</a>
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Contato</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>
