@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="abrir-chamado.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet">
     <style>
+        /* Estilos para a câmera */
         .camera-preview {
             width: 100%;
-            max-width: 300px;
+            max-width: 350px;
             margin: 1rem auto;
             border-radius: 8px;
             overflow: hidden;
@@ -46,13 +47,13 @@
         }
 
         .captured-image {
-            max-width: 100%;
+            max-width: 80%; /* Reduzido para 80% da largura */
+            max-height: 200px; /* Altura máxima definida */
             border-radius: 8px;
-            margin-top: 1rem;
-            display: none; /* Inicialmente oculto */
+            margin: 1rem auto; /* Centralizado */
+            display: none;
         }
 
-        /* Estilo para o botão de reiniciar */
         #reiniciarCamera {
             background-color: #f44336;
             margin-left: 0.5rem;
@@ -60,6 +61,19 @@
 
         #reiniciarCamera:hover {
             background-color: #d32f2f;
+        }
+
+        /* Ajustes para o botão "Tentar Novamente" */
+        .camera-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .camera-controls button {
+            flex: 1;
+            max-width: 150px;
         }
     </style>
 </head>
@@ -113,7 +127,7 @@
                         </div>
                         <div class="camera-controls" id="cameraControls" style="display: none;">
                             <button type="button" id="capturarFoto" class="btn-capture">Tirar Foto</button>
-                            <button type="button" id="reiniciarCamera" class="btn-capture">Tentar Novamente</button>
+                            <button type="button" id="reiniciarCamera" class="btn-capture" style="display: none;">Tentar Novamente</button>
                         </div>
                         <canvas id="canvas" style="display: none;"></canvas>
                         <img id="fotoCapturada" class="captured-image" alt="Foto Capturada">
@@ -124,7 +138,6 @@
         </div>
     </div>
 
-    <script src="abrir-chamado.js"></script>
     <script>
         // Elementos da câmera
         const video = document.getElementById('video');
@@ -152,7 +165,7 @@
                 stream = await navigator.mediaDevices.getUserMedia(constraints);
                 video.srcObject = stream;
                 cameraPreview.style.display = 'block';
-                cameraControls.style.display = 'block';
+                cameraControls.style.display = 'flex'; /* Alterado para flex */
                 iniciarCameraBtn.style.display = 'none';
             } catch (error) {
                 alert('Erro ao acessar a câmera: ' + error.message);
@@ -170,7 +183,7 @@
             fotoCapturada.style.display = 'block';
             cameraPreview.style.display = 'none';
             capturarFotoBtn.style.display = 'none';
-            reiniciarCameraBtn.style.display = 'inline-block';
+            reiniciarCameraBtn.style.display = 'inline-block'; /* Botão "Tentar Novamente" aparece */
         }
 
         // Reiniciar a câmera
