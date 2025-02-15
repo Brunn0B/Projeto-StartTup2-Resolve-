@@ -47,11 +47,12 @@
         }
 
         .captured-image {
-            max-width: 90%; /* Reduzido para 80% da largura */
-            max-height: 250px; /* Altura máxima definida */
+            max-width: 100%; /* Ajustado para ocupar a largura máxima */
+            max-height: 300px; /* Altura máxima aumentada */
             border-radius: 8px;
             margin: 1rem auto; /* Centralizado */
             display: none;
+            object-fit: contain; /* Garante que a imagem não fique distorcida */
         }
 
         #reiniciarCamera {
@@ -138,7 +139,6 @@
         </div>
     </div>
 
-    <script src="abrir-chamado.js"></script>
     <script>
         // Elementos da câmera
         const video = document.getElementById('video');
