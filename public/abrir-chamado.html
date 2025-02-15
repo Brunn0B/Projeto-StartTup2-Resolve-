@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abrir Chamado - Resolve+</title>
+    <link rel="stylesheet" href="abrir-chamado.css">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <div class="app-header-left">
+                <span class="app-icon"></span>
+                <p class="app-name">Resolve+</p>
+            </div>
+            <div class="app-header-right">
+                <button class="mode-switch" title="Alternar Tema">
+                    <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="app-content">
+            <div class="projects-section">
+                <div class="projects-section-header">
+                    <p>Abrir Novo Chamado</p>
+                </div>
+                <form id="chamadoForm">
+                    <div class="form-group">
+                        <label for="titulo">Título do Chamado:</label>
+                        <input type="text" id="titulo" name="titulo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" name="descricao" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="localizacao">Localização:</label>
+                        <select id="localizacao" name="localizacao" required>
+                            <option value="">Selecione...</option>
+                            <option value="corredor">Corredor Principal</option>
+                            <option value="loja">Dentro de uma Loja</option>
+                            <option value="estacionamento">Estacionamento</option>
+                            <option value="alimentacao">Praça de Alimentação</option>
+                            <option value="jardim">Jardim</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="anexo">Anexar Foto/Video:</label>
+                        <input type="file" id="anexo" name="anexo" accept="image/*, video/*">
+                    </div>
+                    <div class="form-group">
+                        <label>Capturar Foto:</label>
+                        <button type="button" id="capturarFoto" class="btn-capture">Tirar Foto</button>
+                        <video id="video" autoplay style="display: none;"></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                        <img id="fotoCapturada" alt="Foto Capturada" style="max-width: 100%; display: none;">
+                    </div>
+                    <button type="submit" class="btn-submit">Abrir Chamado</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="abrir-chamado.js"></script>
+</body>
+</html>

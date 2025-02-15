@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolve+ | Excelência em Manutenção</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
+    <style>
+        :root {
+            --primary: #1a73e8; /* Azul sofisticado */
+            --secondary: #34a853; /* Verde profissional */
+            --accent: #fbbc05; /* Amarelo para destaques */
+            --dark: #202124; /* Fundo escuro */
+            --light: #ffffff; /* Texto claro */
+            --gray: #5f6368; /* Texto secundário */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(45deg, var(--dark), var(--dark));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('particles.svg') repeat;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light);
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer {
+            background: var(--dark);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <img src="/img/Lofo2.png" alt="Logo Resolve+" style="width: 160px; margin-bottom: 2rem;">
+            <h1>Resolve+</h1>
+            <p>
+                A plataforma definitiva para gerenciamento de manutenção em shopping centers.
+                Conectamos colaboradores, departamentos e clientes em um único ecossistema inteligente.
+            </p>
+            <button class="cta-button" onclick="window.location.href='/login-cadastro.html'">Comece Agora</button>
+        </div>
+        <div class="scroll-down">Role para baixo</div>
+    </section>
+
+    <section id="sobre">
+        <h2>Sobre o Resolve+</h2>
+        <p>
+            O Resolve+ é uma solução completa para a gestão de manutenção em shopping centers.
+            Com foco na eficiência e na comunicação, nossa plataforma permite que colaboradores
+            reportem problemas em tempo real, enquanto o departamento de manutenção gerencia
+            e resolve as ocorrências de forma ágil e organizada.
+        </p>
+    </section>
+
+    <section id="funcionalidades">
+        <h2>Funcionalidades</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Registro de Ocorrências</h3>
+                <p>
+                    Registre problemas com fotos, vídeos e descrições detalhadas.
+                    Tudo em tempo real, diretamente do seu celular.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3>Comunicação Eficiente</h3>
+                <p>
+                    Envie chamados automaticamente para o departamento de manutenção.
+                    Acompanhe o status de cada solicitação.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3>Feedback em Tempo Real</h3>
+                <p>
+                    Receba notificações instantâneas sobre o andamento dos chamados.
+                    Mantenha todos informados.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="casos-de-uso">
+        <h2>Casos de Uso</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Problemas de Iluminação</h3>
+                <p>
+                    Reporte falhas na iluminação de corredores, estacionamentos e áreas comuns.
+                    Resolução rápida e eficiente.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3>Manutenção de Escadas Rolantes</h3>
+                <p>
+                    Registre problemas em escadas rolantes e elevadores.
+                    Priorize a segurança dos clientes.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3>Limpeza e Conservação</h3>
+                <p>
+                    Solicite serviços de limpeza em áreas específicas.
+                    Mantenha o shopping sempre impecável.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos">
+        <h2>Depoimentos</h2>
+        <div class="feature-grid">
+            <div class="testimonial-card">
+                <p>
+                    "O Resolve+ revolucionou a forma como lidamos com a manutenção no nosso shopping.
+                    A comunicação ficou muito mais eficiente."
+                </p>
+                <span>- João Silva, Gerente</span>
+            </div>
+            <div class="testimonial-card">
+                <p>
+                    "A plataforma é intuitiva e facilita muito o nosso dia a dia.
+                    Recomendo para todos os shoppings!"
+                </p>
+                <span>- Maria Souza, Colaboradora</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <h2>Contato</h2>
+        <p>Email: contato@resolveplus.com</p>
+        <p>Telefone: (11) 1234-5678</p>
+        <div>
+            <a href="#sobre">Sobre</a>
+            <a href="#funcionalidades">Funcionalidades</a>
+            <a href="#casos-de-uso">Casos de Uso</a>
+            <a href="#depoimentos">Depoimentos</a>
+        </div>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+<script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then(() => console.log('Service Worker registrado com sucesso'))
+        .catch((error) => console.log('Erro ao registrar o Service Worker:', error));
+    }
+  </script>
+</body>
+</html>
