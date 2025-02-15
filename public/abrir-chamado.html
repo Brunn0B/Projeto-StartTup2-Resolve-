@@ -6,6 +6,44 @@
     <title>Abrir Chamado - Resolve+</title>
     <link rel="stylesheet" href="abrir-chamado.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos adicionais para a câmera */
+        .camera-preview {
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            display: none; /* Inicialmente oculto */
+        }
+
+        .camera-controls {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .btn-capture {
+            background-color: #3c3f3c;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-capture:hover {
+            background-color: #45a049;
+        }
+
+        .captured-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none; /* Inicialmente oculto */
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -50,15 +88,17 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="anexo">Anexar Foto/Video:</label>
-                        <input type="file" id="anexo" name="anexo" accept="image/*, video/*">
-                    </div>
-                    <div class="form-group">
                         <label>Capturar Foto:</label>
-                        <button type="button" id="capturarFoto" class="btn-capture">Tirar Foto</button>
-                        <video id="video" autoplay style="display: none;"></video>
+                        <button type="button" id="iniciarCamera" class="btn-capture">Iniciar Câmera</button>
+                        <div class="camera-preview" id="cameraPreview">
+                            <video id="video" autoplay></video>
+                        </div>
+                        <div class="camera-controls" id="cameraControls" style="display: none;">
+                            <button type="button" id="capturarFoto" class="btn-capture">Tirar Foto</button>
+                            <button type="button" id="reiniciarCamera" class="btn-capture">Tentar Novamente</button>
+                        </div>
                         <canvas id="canvas" style="display: none;"></canvas>
-                        <img id="fotoCapturada" alt="Foto Capturada" style="max-width: 100%; display: none;">
+                        <img id="fotoCapturada" class="captured-image" alt="Foto Capturada">
                     </div>
                     <button type="submit" class="btn-submit">Abrir Chamado</button>
                 </form>
@@ -67,5 +107,74 @@
     </div>
 
     <script src="abrir-chamado.js"></script>
+    <script>
+        // Elementos da câmera
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const fotoCapturada = document.getElementById('fotoCapturada');
+        const cameraPreview = document.getElementById('cameraPreview');
+        const cameraControls = document.getElementById('cameraControls');
+        const iniciarCameraBtn = document.getElementById('iniciarCamera');
+        const capturarFotoBtn = document.getElementById('capturarFoto');
+        const reiniciarCameraBtn = document.getElementById('reiniciarCamera');
+
+        let stream;
+
+        // Iniciar a câmera traseira
+        async function iniciarCamera() {
+            try {
+                const constraints = {
+                    video: {
+                        facingMode: 'environment', // Usar câmera traseira
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                };
+
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = stream;
+                cameraPreview.style.display = 'block';
+                cameraControls.style.display = 'block';
+                iniciarCameraBtn.style.display = 'none';
+            } catch (error) {
+                alert('Erro ao acessar a câmera: ' + error.message);
+            }
+        }
+
+        // Capturar foto
+        function capturarFoto() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Exibir a foto capturada
+            fotoCapturada.src = canvas.toDataURL('image/png');
+            fotoCapturada.style.display = 'block';
+            cameraPreview.style.display = 'none';
+            capturarFotoBtn.style.display = 'none';
+            reiniciarCameraBtn.style.display = 'inline-block';
+        }
+
+        // Reiniciar a câmera
+        function reiniciarCamera() {
+            fotoCapturada.style.display = 'none';
+            cameraPreview.style.display = 'block';
+            capturarFotoBtn.style.display = 'inline-block';
+            reiniciarCameraBtn.style.display = 'none';
+        }
+
+        // Parar a câmera ao sair
+        function pararCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        }
+
+        // Event Listeners
+        iniciarCameraBtn.addEventListener('click', iniciarCamera);
+        capturarFotoBtn.addEventListener('click', capturarFoto);
+        reiniciarCameraBtn.addEventListener('click', reiniciarCamera);
+        window.addEventListener('beforeunload', pararCamera);
+    </script>
 </body>
 </html>
