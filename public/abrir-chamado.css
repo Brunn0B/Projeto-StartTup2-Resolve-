@@ -45,6 +45,7 @@ body {
     align-items: center;
     height: 100vh;
     transition: background-color 0.3s ease;
+    
 }
 
 .app-container {
@@ -192,3 +193,17 @@ input[type="file"] {
     border-radius: 8px;
     border: 1px solid var(--message-box-border);
 }
+
+.back-arrow {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 34px;
+    color: #f20000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .back-arrow:hover {
+    color: #3f51b5;
+  }
