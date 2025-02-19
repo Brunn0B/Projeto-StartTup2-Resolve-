@@ -9,7 +9,7 @@
 - **Título**: Resolve+ - Sistema de Gerenciamento de Chamados
 - **Autores**: Equipe de Desenvolvimento Resolve+
 - **Repositório**: [https://github.com/Brunn0B/Projeto-StartTup2-Resolve-.git](https://github.com/Brunn0B/Projeto-StartTup2-Resolve-.git)
-- **Vídeo Demonstrativo**: [Assista ao Vídeo](https://youtube.com/seu-video)
+- **Deshboard**: [/public/img/imagen.png]
 
 ---
 
@@ -18,9 +18,10 @@
 Para rodar o Resolve+, você precisará das seguintes dependências:
 
 - **Node.js** (v16 ou superior)
-- **React** (v18 ou superior)
+- **NGROK** (TESTE DE SERVER)
 - **Express** (para o backend)
 - **MongoDB** (banco de dados)
+- **nodemon** (Servidor)
 - **Bibliotecas Adicionais**:
   ```bash
   npm install axios react-router-dom react-icons chart.js
