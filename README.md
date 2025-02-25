@@ -4,16 +4,16 @@
 
 ---
 
-## Informações do Projeto
+## **Informações do Projeto**
 
 - **Título**: Resolve+ - Sistema de Gerenciamento de Chamados
 - **Autores**: Equipe de Desenvolvimento Resolve+
-- **Repositório**: [https://github.com/Brunn0B/Projeto-StartTup2-Resolve-.git](https://github.com/Brunn0B/Projeto-StartTup2-Resolve-.git)
+- **Repositório**: [**GitHub**](https://github.com/Brunn0B/Projeto-StartTup2-Resolve-)
 - **Deshboard**: [/public/img/imagen.png]
 
 ---
 
-## Instalação & Dependências
+## **Instalação & Dependências**
 
 Para rodar o Resolve+, você precisará das seguintes dependências:
 
@@ -22,9 +22,41 @@ Para rodar o Resolve+, você precisará das seguintes dependências:
 - **Express** (para o backend)
 - **MongoDB** (banco de dados)
 - **nodemon** (Servidor)
-- **Bibliotecas Adicionais**:
-  ```bash
-  npm install axios react-router-dom react-icons chart.js
+- **Bibliotecas Adicionais**
+
+---
+
+## **Links e Ferramentas**
+
+### **Links**
+- **GitHub**: [https://github.com/Brunn0B/Projeto-StartTup2-Resolve-](https://github.com/Brunn0B/Projeto-StartTup2-Resolve-)
+- **Trello**: [https://trello.com/invite/b/66ccc299900a85d7ccc6c3f1/ATTI443afcc886ea7edf8222e5979bcc689c687F4C11/StartupOne](https://trello.com/invite/b/66ccc299900a85d7ccc6c3f1/ATTI443afcc886ea7edf8222e5979bcc689c687F4C11/StartupOne)
+
+### **Ferramentas**
+- **Javascript**
+- **HTML**
+- **CSS**
+- **Node.js** (v16 ou superior)
+- **NGROK** (TESTE DE SERVER)
+- **Express** (para o backend)
+- **MongoDB** (banco de dados)
+- **nodemon** (Servidor)
+- **Futuramente ML-machine (Python) para Chat Bot**
+  - *Obs: APIs com IA, como o OpenAI, normalmente são pagas.*
+
+---
+
+## **Professores Envolvidos**
+
+- **Tulio**: *Cyber-Segurança*
+- **Daniel Ohata**: *Inteligência Artificial*
+- **Cilene Renata**: *Desenvolvimento Web Back-end*
+- **Fabricio Tonetto**: *Desenvolvimento App-Mobile*
+
+### Vídeo no YouTube
+[![Assista ao vídeo](https://www.youtube.com/watch?v=YtUuTxyDDyg)](https://www.youtube.com/watch?v=YtUuTxyDDyg)
+
+
 ## Directory Hierarchy
 ```
 |—— .env
