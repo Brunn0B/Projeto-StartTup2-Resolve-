@@ -53,8 +53,11 @@ Para rodar o Resolve+, você precisará das seguintes dependências:
 - **Cilene Renata**: *Desenvolvimento Web Back-end*
 - **Fabricio Tonetto**: *Desenvolvimento App-Mobile*
 
-### Vídeo no YouTube
+![GIF do Projeto](/public/img/Apresentaçao%20Inicial.gif)
+
+### Vídeo no completo no YouTube
 [![Assista ao vídeo](https://www.youtube.com/watch?v=YtUuTxyDDyg)](https://www.youtube.com/watch?v=YtUuTxyDDyg)
+
 
 
 ## Directory Hierarchy
