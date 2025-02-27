@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Credenciais</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #ffffff;
+            color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 250px;
+            background: #0b111e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar img {
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .sidebar a:hover {
+            background: #3f51b5;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow: auto;
+        }
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filters input, .filters select {
+            padding: 8px;
+            background: #222;
+            color: #fff;
+            border: 1px solid #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #333;
+        }
+        .checkbox {
+            text-align: center;
+        }
+        .button {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/public/img/Logo Novo.png" alt="Logo">
+        <a href="TelaChamados.html" class="Home"><i class="fas fa-home"></i></a>
+        <a href="abrir-chamado.html"> <i class="fas fa-plus"></i></a>
+    </div>
+    <div class="container">
+        
+        <div class="filters">
+            <select id="statusFilter">
+                <option value="TDS STATUS">Todos os Status</option>
+                <option value="Aberto">Aberto</option>
+                <option value="Em Andamento">Em Andamento</option>
+                <option value="Finalizado">Finalizado</option>
+            </select>
+            <select id="Ano">
+                <option value="TODOS OS ANOS">Todos os Anos</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+            </select>
+<select id="Mes">
+    <option value="TODOS OS MESES">Todos os Meses</option>
+    <option value="Janeiro">Janeiro</option>
+    <option value="Fevereiro">Fevereiro</option>
+    <option value="Marco">Marco</option>
+    <option value="Abril">Abril</option>
+    <option value="Maio">Maio</option>
+    <option value="Junho">Junho</option>
+    <option value="Julho">Julho</option>
+    <option value="Agosto">Agosto</option>
+    <option value="Setembro">Setembro</option>
+    <option value="Outubro">Outubro</option>
+    <option value="Novembro">Novembro</option>
+    <option value="Dezembro">Dezembro</option>
+</select>
+
+<select id="Dia">
+    <option value="TODOS OS DIAS">Todos os Dias</option>
+    <option value="01">01</option>
+    <option value="02">02</option>
+    <option value="03">03</option>
+    <option value="04">04</option>
+    <option value="05">05</option>
+    <option value="06">06</option>
+    <option value="07">07</option>
+    <option value="08">08</option>
+    <option value="09">09</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+    <option value="16">16</option>
+    <option value="17">17</option>
+    <option value="18">18</option>
+    <option value="19">19</option>
+    <option value="20">20</option>
+    <option value="21">21</option>
+    <option value="22">22</option>
+    <option value="23">23</option>
+    <option value="24">24</option>
+    <option value="25">25</option>
+    <option value="26">26</option>
+    <option value="27">27</option>
+    <option value="28">28</option>
+    <option value="29">29</option>
+    <option value="30">30</option>
+    <option value="31">31</option>
+</select>
+
+            </select>
+
+            <input type="text" id="numeroFilter" placeholder="Pesquisar Por Serviço">
+        </div>
+        <table id="dataTable">
+            <thead>
+                <tr id="tableHead">
+                    <th>Selecionar</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        <button class="button" id="printButton">Imprimir Tabela</button>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const dataTable = document.getElementById('dataTable');
+        const tableHead = document.getElementById('tableHead');
+        const printButton = document.getElementById('printButton');
+        const numeroFilter = document.getElementById('numeroFilter');
+        const statusFilter = document.getElementById('statusFilter');
+        const Ano = document.getElementById('Ano');
+        const Mes = document.getElementById('Mes');
+        const Dia = document.getElementById('Dia');
+
+        fileInput.addEventListener('change', function () {
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const data = event.target.result;
+                const workbook = XLSX.read(data, { type: 'binary' });
+                const sheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[sheetName];
+
+                const tableData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                const tableBody = document.createElement('tbody');
+
+                tableData.forEach(row => {
+                    const tableRow = document.createElement('tr');
+                    row.forEach(cell => {
+                        const tableCell = document.createElement('td');
+                        tableCell.textContent = cell;
+                        tableRow.appendChild(tableCell);
+                    });
+                    tableBody.appendChild(tableRow);                
+                });     
+
+                dataTable.innerHTML = '';
+                dataTable.appendChild(tableHead);
+                dataTable.appendChild(tableBody);
+            };
+
+            reader.readAsBinaryString(file);
+        });
+    </script>
+</body>
+</html>
