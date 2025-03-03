@@ -61,7 +61,7 @@ ngrok http 3000
 
 ### **Links**
 - [GitHub](https://github.com/Brunn0B/Projeto-StartTup2-Resolve-) - Repositório do Projeto  
-- Trello - Quadro de Tarefas  
+- [Trello - Quadro de Tarefas](https://trello.com/invite/b/66ccc299900a85d7ccc6c3f1/ATTI443afcc886ea7edf8222e5979bcc689c687F4C11/StartupOne)  
 
 ### **Ferramentas Utilizadas**
 - **JavaScript** (linguagem principal)  
@@ -191,9 +191,29 @@ git push origin minha-feature
 5. Abra um Pull Request.
 
 ---
-
 ## **Licença**
-Este projeto está licenciado sob a **MIT License**. Consulte o arquivo `LICENSE` para mais detalhes.
+
+MIT License
+
+Copyright (c) 2023 Resolve+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ---
 
