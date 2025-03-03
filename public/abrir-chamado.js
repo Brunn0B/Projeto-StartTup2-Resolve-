@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Alternar entre temas claro e escuro
+    
     var modeSwitch = document.querySelector('.mode-switch');
     modeSwitch.addEventListener('click', function () {
         document.documentElement.classList.toggle('dark');
         modeSwitch.classList.toggle('active');
     });
 
-    // Alternar entre visualização de lista e grade (não aplicável nesta tela, mas mantido para consistência)
     var listView = document.querySelector('.list-view');
     var gridView = document.querySelector('.grid-view');
     var projectsList = document.querySelector('.project-boxes');
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Abrir e fechar a seção de mensagens (não aplicável nesta tela, mas mantido para consistência)
     var messagesBtn = document.querySelector('.messages-btn');
     var messagesClose = document.querySelector('.messages-close');
     var messagesSection = document.querySelector('.messages-section');
@@ -42,44 +40,42 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Captura de foto
+
     const video = document.getElementById('video');
     const canvas = document.getElementById('canvas');
     const fotoCapturada = document.getElementById('fotoCapturada');
     const capturarFotoBtn = document.getElementById('capturarFoto');
-    const anexoInput = document.getElementById('anexo');
 
-    // Inicia a câmera
     async function iniciarCamera() {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const constraints = {
+                video: {
+                    facingMode: 'environment', // Usar câmera traseira
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                }
+            };
+    
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
             video.srcObject = stream;
-        } catch (err) {
-            console.error('Erro ao acessar a câmera:', err);
-            alert('Não foi possível acessar a câmera. Verifique as permissões.');
+            cameraPreview.style.display = 'block';
+            cameraControls.style.display = 'flex';
+            iniciarCameraBtn.style.display = 'none';
+        } catch (error) {
+            alert('Erro ao acessar a câmera: ' + error.message);
         }
     }
 
-    // Captura a foto
     capturarFotoBtn.addEventListener('click', () => {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        // Converte a imagem para base64
         const imagemBase64 = canvas.toDataURL('image/png');
         fotoCapturada.src = imagemBase64;
         fotoCapturada.style.display = 'block';
-
-        // Converte base64 para Blob e define como arquivo no input de anexo
-        const blob = dataURItoBlob(imagemBase64);
-        const file = new File([blob], 'foto_capturada.png', { type: 'image/png' });
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-        anexoInput.files = dataTransfer.files;
     });
 
-    // Função para converter base64 para Blob
     function dataURItoBlob(dataURI) {
         const byteString = atob(dataURI.split(',')[1]);
         const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
@@ -91,33 +87,46 @@ document.addEventListener('DOMContentLoaded', function () {
         return new Blob([ab], { type: mimeString });
     }
 
-    // Envio do formulário
-    document.getElementById('chamadoForm').addEventListener('submit', function (event) {
+    document.getElementById('chamadoForm').addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const titulo = document.getElementById('titulo').value;
         const descricao = document.getElementById('descricao').value;
         const localizacao = document.getElementById('localizacao').value;
-        const anexo = document.getElementById('anexo').files[0];
+        const fotoCapturada = document.getElementById('fotoCapturada').src;
 
         if (!titulo || !descricao || !localizacao) {
             alert('Por favor, preencha todos os campos obrigatórios.');
             return;
         }
 
-        const chamado = {
-            titulo,
-            descricao,
-            localizacao,
-            anexo: anexo ? anexo.name : 'Nenhum arquivo anexado'
-        };
+        const formData = new FormData();
+        formData.append('titulo', titulo);
+        formData.append('descricao', descricao);
+        formData.append('localizacao', localizacao);
+        if (fotoCapturada) {
+            const blob = await fetch(fotoCapturada).then(res => res.blob());
+            formData.append('foto', blob, 'foto_capturada.png');
+        }
 
-        console.log('Chamado criado:', chamado);
-        alert('Chamado aberto com sucesso!');
-        document.getElementById('chamadoForm').reset();
-        fotoCapturada.style.display = 'none'; // Oculta a foto capturada
+        try {
+            const response = await fetch('/abrir-chamado', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Chamado aberto com sucesso!');
+                document.getElementById('chamadoForm').reset();
+                document.getElementById('fotoCapturada').style.display = 'none';
+            } else {
+                alert('Erro ao abrir o chamado.');
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro ao abrir o chamado.');
+        }
     });
 
-    // Inicia a câmera ao carregar a página
     iniciarCamera();
 });

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte ao Usuário</title>
+    <link rel="stylesheet" href="EstiloGlobal.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --app-container: #f3f6fd;
+            --main-color: #1f1c2e;
+            --secondary-color: #4a4a4a;
+            --link-color: #1f1c2e;
+            --link-color-hover: #c3cff4;
+            --link-color-active: #fff;
+            --link-color-active-bg: #1f1c2e;
+            --projects-section: #fff;
+            --message-box-hover: #fafcff;
+            --message-box-border: #e9ebf0;
+            --more-list-bg: #fff;
+            --more-list-bg-hover: #f6fbff;
+            --more-list-shadow: rgba(209, 209, 209, 0.4);
+            --button-bg: #1f1c24;
+            --search-area-bg: #fff;
+            --star: #1ff1c2e;
+            --message-btn: #fff;
+        }
+
+        .dark {
+            --app-container: #1f1d2b;
+            --main-color: #fff;
+            --secondary-color: rgba(255, 255, 255, 0.8);
+            --projects-section: #1f2937;
+            --link-color: rgba(255, 255, 255, 0.8);
+            --link-color-hover: rgba(195, 207, 244, 0.1);
+            --link-color-active-bg: rgba(195, 207, 244, 0.2);
+            --button-bg: #1f2937;
+            --search-area-bg: #1f2937;
+            --message-box-hover: #243244;
+            --message-box-border: rgba(255, 255, 255, 0.1);
+            --star: #ffd92c;
+            --light-font: rgba(255, 255, 255, 0.8);
+            --more-list-bg: #2f3142;
+            --more-list-bg-hover: rgba(195, 207, 244, 0.1);
+            --more-list-shadow: rgba(195, 207, 244, 0.1);
+            --message-btn: rgba(195, 207, 244, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--app-container);
+            color: var(--main-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            background-color: var(--projects-section);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--main-color);
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: var(--main-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: var(--link-color-hover);
+        }
+
+        .support-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .support-card {
+            background-color: var(--projects-section);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .support-card .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: rgb(147, 147, 147);
+        }
+
+        .support-card .card-description {
+            font-size: 14px;
+            color: rgb(134, 134, 134);
+            margin-bottom: 20px;
+        }
+
+        .support-card .card-form {
+            display: none;
+        }
+
+        .support-card.active .card-form {
+            display: block;
+        }
+
+        .support-card.active {
+            background-color: var(--button-bg);
+        }
+
+        .support-card form label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .support-card form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--message-box-border);
+            border-radius: 5px;
+            background-color: var(--search-area-bg);
+            color: var(--main-color);
+            resize: none;
+            margin-bottom: 15px;
+        }
+
+        .support-card form button {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .support-card form button:hover {
+            background-color: var(--link-color-hover);
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none;
+            }
+
+            .support-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Suporte ao Usuário</div>
+        <div class="nav-links">
+            <a href="TelaChamados.html"><i class="fas fa-home"></i> Home</a>
+            <a href="PerfilUser.html"> <i class="fas fa-user"></i> Perfil</a>
+            <a href="abrir-chamado.html"><i class="fas fa-plus"></i> Abrir Chamado</a>
+            <a href="#" class="app-sidebar-link" onclick="openConfigPopup(); return false;">
+                <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-settings" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 30px;">Como podemos ajudar?</h1>
+
+        <div class="support-cards">
+            <div class="support-card" id="doubtCard">
+                <div class="card-title"><i class="fas fa-question-circle"></i> Dúvida</div>
+                <div class="card-description">Tem alguma dúvida sobre como usar o sistema?</div>
+                <div class="card-form">
+                    <form>
+                        <label for="doubtMessage">Descreva sua dúvida:</label>
+                        <textarea id="doubtMessage" rows="4" required></textarea>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="support-card" id="complaintCard">
+                <div class="card-title"><i class="fas fa-exclamation-circle"></i> Reclamação</div>
+                <div class="card-description">Envie uma reclamação sobre algum problema.</div>
+                <div class="card-form">
+                    <form>
+                        <label for="complaintMessage">Descreva sua reclamação:</label>
+                        <textarea id="complaintMessage" rows="4" required></textarea>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="support-card" id="technicalCard">
+                <div class="card-title"><i class="fas fa-bug"></i> Problemas Técnicos</div>
+                <div class="card-description">Relate problemas com o sistema ou hardware.</div>
+                <div class="card-form">
+                    <form>
+                        <label for="technicalMessage">Descreva o problema:</label>
+                        <textarea id="technicalMessage" rows="4" required></textarea>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+
+        
+            <div class="support-card" id="othersCard">
+                <div class="card-title"><i class="fas fa-ellipsis-h"></i> Outros</div>
+                <div class="card-description">Outros assuntos que não se encaixam nas categorias acima.</div>
+                <div class="card-form">
+                    <form>
+                        <label for="othersMessage">Descreva o assunto:</label>
+                        <textarea id="othersMessage" rows="4" required></textarea>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="EstiloGlobal.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.support-card');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                
+                cards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -273,12 +273,13 @@ color: var(--main-color);
 font-size: 20px;
 }
 .projects-status {
+
 display: flex;
 }
 .item-status {
 display: flex;
 flex-direction: column;
-margin-right: 16px;
+margin-right: 14px;
 }
 .item-status:not(:last-child) .status-type:after {
 content: '';
@@ -657,6 +658,54 @@ align-items: center;
 padding: 4px;
 display: none;
 }
+
+.more-wrapper {
+    position: relative;
+}
+
+.more-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--more-list-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.more-options button {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.more-options button:hover {
+    background-color: var(--more-list-bg-hover);
+}
+
+.project-btn-more:hover + .more-options,
+.more-options:hover {
+    display: block;
+}
+
+.project-box[data-status="pendente"] {
+    background-color: #933744c0;
+}
+
+.project-box[data-status="em_andamento"] {
+    background-color: #ffcb77;
+}
+
+.project-box[data-status="concluido"] {
+    background-color: #80ff8a; 
+}
+
 @media screen and (max-width: 980px) {
 .project-boxes.jsGridView .project-box-wrapper {
 width: 50%;
