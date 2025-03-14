@@ -331,7 +331,7 @@
                 A plataforma definitiva para gerenciamento de manutenção em Ambientes Corporativos.
                 Conectamos colaboradores, departamentos e clientes em um único ecossistema inteligente.
             </p>
-            <button class="cta-button" id="install-button">Instalar Agora</button>
+            <button class="cta-button" onclick="window.location.href='Loguin.html'">Comece Agora</button>
         </div>
         <div class="scroll-down">Role para baixo</div>
     </section>
@@ -512,44 +512,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-    <script>
-        let deferredPrompt;
-
-        // Evento disparado quando o PWA pode ser instalado
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-
-            // Mostra o botão de instalação
-            const installButton = document.getElementById('install-button');
-            installButton.style.display = 'block';
-
-            // Instala o PWA quando o botão for clicado
-            installButton.addEventListener('click', () => {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('Usuário aceitou a instalação');
-                    } else {
-                        console.log('Usuário recusou a instalação');
-                    }
-                    deferredPrompt = null;
-                });
-            });
-        });
-
-        // Se o evento não for disparado, instrua o usuário a instalar manualmente
-        window.addEventListener('appinstalled', () => {
-            console.log('PWA instalado com sucesso');
-        });
-
-        // Verifica se o PWA já está instalado
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            document.getElementById('install-button').style.display = 'none';
-            document.getElementById('install-message').innerText = 'O Resolve+ já está instalado no seu dispositivo!';
-            document.getElementById('install-message').style.display = 'block';
-        }
-    </script>
     <script>
         const sections = document.querySelectorAll('section');
 

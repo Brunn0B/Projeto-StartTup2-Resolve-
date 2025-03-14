@@ -1,10 +1,10 @@
 {
-    "name": "Croesus System",
+    "name": "Resolve+",
     "short_name": "Resolve+",
     "start_url": "/TelaInicio.html",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#007bff",
+    "theme_color": "#000000",
     "icons": [
       {
         "src": "/img/Logo Novo.png",
@@ -18,4 +18,3 @@
       }
     ]
   }
-  
